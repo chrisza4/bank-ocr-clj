@@ -10,6 +10,12 @@
     (is (= (number-ocr ocr-number-tmpl/one) 1))
     (is (= (number-ocr ocr-number-tmpl/two) 2))
     (is (= (number-ocr ocr-number-tmpl/three) 3))
-    (is (= (number-ocr ocr-number-tmpl/four) 4))))
+    (is (= (number-ocr ocr-number-tmpl/four) 4))
+    (is (= (number-ocr ocr-number-tmpl/five) 5))
+    (is (= (number-ocr ocr-number-tmpl/six) 6))
+    (is (= (number-ocr ocr-number-tmpl/seven) 7))
+    (is (= (number-ocr ocr-number-tmpl/eight) 8))
+    (is (= (number-ocr ocr-number-tmpl/nine) 9)))
 
-(comment (ocr-number-tmpl/zero))
+  (testing "Return invalid for wrong input"
+    (is (= (number-ocr "some invalid input") :invalid))))
