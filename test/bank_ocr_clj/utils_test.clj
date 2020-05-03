@@ -13,4 +13,4 @@
 
 (deftest pad-test
   (testing "padding vector"
-    (is (= ["1" "2" " " " "] (pad 4 ["1" "2"] " ")))))
+    (is (= ["1" "2" " " " "] (pad-vector 4 ["1" "2"] " ")))))
