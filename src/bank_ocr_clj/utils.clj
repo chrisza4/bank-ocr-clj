@@ -12,7 +12,9 @@
              (recur next-v n next-acc)))))
 
 (defn pad-vector [n coll val]
-  (take n (concat coll (repeat val))))
+  (take
+    (max n (count coll))
+    (concat coll (repeat val))))
 
 (defn inspect [var]
   (pprint/pprint var)
