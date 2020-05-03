@@ -7,26 +7,23 @@
 (defn ^:private sanitize-empty-lines [lines]
   (map #(if (= "" %) " " %) lines))
 
-(defn ^:private chunk-and-padding [v]
-  (let [max-length (apply max (map count v))]
-    (->> (map #(utils/pad-vector max-length % " ") v)
-         (map sanitize-empty-lines)
-         (map #(utils/chunk-vector % 3))
-         (apply map vector))))
-
 (defn ^:private split-account-numbers [v]
   (let [by-lines (str/split v #"\n")]
     (->> (utils/chunk-vector by-lines 4)
          (map #(take 3 %)))))
 
-(defn process-ocr-text [str]
-  (->> (map #(str/split % #"") str)
-       (chunk-and-padding)))
+(defn split-numbers [str]
+  (let [str-vector (map #(str/split % #"") str)
+        max-length (apply max (map count str-vector))]
+    (->> (map #(utils/pad-vector max-length % " ") str-vector)
+         (map sanitize-empty-lines)
+         (map #(utils/chunk-vector % 3))
+         (apply map vector))))
 
 (defn load-ocr-file [path]
   (->> (slurp path)
        (split-account-numbers)
-       (map #(process-ocr-text %))))
+       (map #(split-numbers %))))
 
 (comment (chunk-vector [1 2 3 4 5 6 7] 2)
          (load-ocr-file "./test/fixtures/test_case_4.txt"))
