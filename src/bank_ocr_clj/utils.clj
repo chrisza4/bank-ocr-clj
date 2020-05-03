@@ -1,4 +1,5 @@
-(ns bank-ocr-clj.utils)
+(ns bank-ocr-clj.utils
+  (:require [clojure.pprint :as pprint]))
 
 (defn chunk-vector
   ([v n] (chunk-vector v n []))
@@ -12,3 +13,7 @@
 
 (defn pad-vector [n coll val]
   (take n (concat coll (repeat val))))
+
+(defn inspect [var]
+  (pprint/pprint var)
+  var)

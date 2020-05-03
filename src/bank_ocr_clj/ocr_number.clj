@@ -16,3 +16,6 @@
 
 (defn number-ocr [number-text]
   (or (number-map number-text) :invalid))
+
+(defn ocr-line [line]
+  (map number-ocr line))

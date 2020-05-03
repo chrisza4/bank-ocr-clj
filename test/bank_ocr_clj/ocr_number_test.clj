@@ -19,3 +19,8 @@
 
   (testing "Return invalid for wrong input"
     (is (= (number-ocr "some invalid input") :invalid))))
+
+(deftest ocr-line-test
+  (testing "Can ocr line"
+    (is (= (ocr-line [ocr-number-tmpl/four ocr-number-tmpl/eight])
+           [4 8]))))
